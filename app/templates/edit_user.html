@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Pengguna</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+</head>
+<body>
+  <div class="container mt-4">
+    <h2>Edit Pengguna</h2>
+    <!-- Corrected the form action to pass 'user_id' -->
+    <form action="{{ url_for('dashboard.edit_user', user_id=user['_id']) }}" method="POST">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" value="{{ user['username'] }}" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ user['email'] }}" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="{{ url_for('dashboard.dashboard') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</body>
+</html>

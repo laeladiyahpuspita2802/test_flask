@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Sidebar -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="#" class="brand-link">
+      <span class="brand-text font-weight-light">Dashboard</span>
+    </a>
+    <div class="sidebar">
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="{{ url_for('dashboard.dashboard') }}" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>Beranda</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('report.reports') }}" class="nav-link active">
+              <i class="nav-icon fas fa-clipboard"></i>
+              <p>Reports</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Content Wrapper -->
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <h1 class="m-0 text-dark">Laporan Artikel Prolaps Uteri</h1>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="container-fluid">
+
+        {% if image1 %}
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">1️⃣ Artikel per Bulan</h3>
+              </div>
+              <div class="card-body text-center">
+                <img src="data:image/png;base64,{{ image1 }}" alt="Artikel per Bulan" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if image2 %}
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">2️⃣ Distribusi Panjang Artikel</h3>
+              </div>
+              <div class="card-body text-center">
+                <img src="data:image/png;base64,{{ image2 }}" alt="Distribusi Panjang Artikel" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if image3 %}
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">3️⃣ WordCloud Artikel</h3>
+              </div>
+              <div class="card-body text-center">
+                <img src="data:image/png;base64,{{ image3 }}" alt="WordCloud Artikel" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Tabel Artikel Terbaru -->
+        {% if tabel %}
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">📋 5 Artikel Terbaru</h3>
+              </div>
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Judul</th>
+                      <th>Tanggal</th>
+                      <th>Sumber</th>
+                      <th>Link</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in tabel %}
+                    <tr>
+                      <td>{{ row.title }}</td>
+                      <td>{{ row.tanggal_publish }}</td>
+                      <td>{{ row.sumber }}</td>
+                      <td><a href="{{ row.link }}" target="_blank">Lihat</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if not image1 and not image2 and not image3 %}
+        <div class="alert alert-warning" role="alert">
+          Tidak ada data tersedia untuk ditampilkan.
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+</body>
+</html>
