@@ -13,3 +13,7 @@ Flask-DotEnv
 oauthlib
 google-auth
 google-auth-oauthlib
+flask
+gunicorn
+python-dotenv
+
