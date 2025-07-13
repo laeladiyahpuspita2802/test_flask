@@ -10,6 +10,7 @@ bcrypt==4.1.2
 pandas==2.2.2
 matplotlib==3.8.4
 seaborn==0.13.2
+wordcloud==1.9.3
 flask-dance==6.2.0
 python-dotenv==1.0.1
 oauthlib==3.2.2
